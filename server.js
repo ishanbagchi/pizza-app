@@ -4,16 +4,18 @@ const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
 
-// set Template engine
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '/resources/views'))
+
+// assets
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
     res.render('home')
 })
 
-// use express layout SHOULD BE AFTER ROUTES
+// set Template engine
 app.use(expressLayout)
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, '/resources/views'))
 
 
 const PORT = process.env.PORT || 3000
